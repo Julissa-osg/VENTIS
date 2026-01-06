@@ -1,12 +1,12 @@
 /* =====================================
-   Paleta de Colores
+   Paleta de Colores (Beauty / Makeup)
 ======================================== */
 :root {
-    --color-fondo-base: #1A1A1A; 
-    --color-principal-neutro: #333333; 
-    --color-acento-vibrante: #E1B12C;
-    --color-sombra-oscura: #131313;
-    --color-blanco: #F0F0F0;
+    --color-fondo-base: #F6F1F4;           /* Fondo general suave */
+    --color-principal-neutro: #B8A1AE;     /* Rosa grisáceo elegante */
+    --color-acento-vibrante: #E7B6C7;      /* Rosa maquillaje */
+    --color-sombra-oscura: #3A2E36;        /* Texto oscuro */
+    --color-blanco: #FFFFFF;
 }
 
 /* =====================================
@@ -20,33 +20,29 @@ html, body {
 }
 
 #landing-container {
-    height: 100vh; 
-    background: var(--color-fondo-ultra-oscuro);
-    
-    background-image: url('../img/fondo-principal-1.jpg'); 
+    height: 100vh;
+    background-color: var(--color-fondo-base);
+
+    background-image: url('../img/fondo-principal-1.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    
-    /* Efecto de oscurecimiento sobre la imagen para que el texto blanco resalte */
+
     position: relative;
 }
 
+/* Capa de suavizado (menos agresiva que negro puro) */
 #landing-container::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Capa oscura (opacidad 70%) */
-    z-index: 1; /* Detrás del contenido, pero encima de la imagen */
+    inset: 0;
+    background: rgba(58, 46, 54, 0.65); /* Violeta oscuro suave */
+    z-index: 1;
 }
 
-/* El contenido debe estar por encima de la capa oscura */
 #landing-container > * {
-    z-index: 2;
     position: relative;
+    z-index: 2;
 }
 
 /* =====================================
@@ -54,69 +50,71 @@ html, body {
 ======================================== */
 
 .notch-menu {
-    /* 1. Estilo y Fondo */
-    background: var(--color-principal-neutro); 
     max-width: 900px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    
-    /* Degradado NEUTRO */
-    background: linear-gradient(135deg, var(--color-principal-neutro) 0%, var(--color-sombra-oscura) 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(58, 46, 54, 0.35);
+
+    background: linear-gradient(
+        135deg,
+        #C4A7B5 0%,
+        #A88FA0 100%
+    );
 }
 
 .menu-link {
     color: var(--color-blanco) !important;
-    opacity: 0.8;
-    transition: opacity 0.3s, transform 0.3s;
+    opacity: 0.85;
     font-weight: 500;
+    transition: all 0.3s ease;
 }
 
 .menu-link:hover {
     opacity: 1;
-    transform: translateY(-2px); /* Efecto 3D sutil */
-    text-shadow: 0 0 5px var(--color-principal-ligero);
+    transform: translateY(-2px);
+    text-shadow: 0 0 6px rgba(231, 182, 199, 0.8);
 }
 
 /* =====================================
    3. Título y Sombras
 ======================================== */
 
-/* Mejora la legibilidad del texto blanco sobre la imagen oscura */
 .shadow-text {
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); 
+    text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
 }
 
-/* Título de la página */
 .display-1 {
     font-size: 5rem;
+    font-weight: 800;
+    color: var(--color-blanco);
 }
 
 /* =====================================
    4. Botones con Profundidad
 ======================================== */
 
-.btn-action-primary, .btn-action-secondary {
+.btn-action-primary,
+.btn-action-secondary {
     font-weight: bold;
     border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
     transition: all 0.3s ease;
-    padding: 10px 25px;
-    border-radius: 8px;
 }
 
-/* Botón Principal (Comenzar/Registro) */
+/* Botón principal */
 .btn-action-primary {
-    background-color: var(--color-acento-vibrante); /* Dorado */
-    color: var(--color-sombra-oscura); /* Texto oscuro sobre dorado */
-    box-shadow: 0 4px var(--color-sombra-oscura);
+    background-color: var(--color-acento-vibrante);
+    color: var(--color-sombra-oscura);
+    box-shadow: 0 4px #C89AAF;
 }
 
 .btn-action-primary:hover {
-    background-color: var(--color-acento-vibrante);
     transform: translateY(-2px);
-    box-shadow: 0 6px var(--color-sombra-oscura);
-    filter: brightness(1.1);
+    box-shadow: 0 8px 18px rgba(231, 182, 199, 0.7);
+    filter: brightness(1.08);
 }
 
-/* Botón de Acceso Rápido (Círculo) */
+/* Botón circular */
 .btn-action-circle {
     width: 60px;
     height: 60px;
@@ -126,31 +124,34 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    transition: all 0.3s;
+
+    box-shadow: 0 6px 16px rgba(58, 46, 54, 0.45);
+    transition: all 0.3s ease;
 }
 
 .btn-action-circle:hover {
-    background-color: var(--color-secundario);
-    transform: scale(1.05);
+    transform: scale(1.08);
+    filter: brightness(1.1);
 }
 
 /* =====================================
-   5. Carrusel/Placeholder (Profundidad)
+   5. Carrusel / Placeholder
 ======================================== */
 
 .carousel-placeholder {
-    background: rgba(51, 51, 51, 0.301); 
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-top: 5px solid var(--color-acento-vibrante);
+
     min-height: 400px;
     width: 80%;
-    /* Borde superior con acento dorado */
-    border-top: 5px solid var(--color-acento-vibrante);
+    border-radius: 18px;
 }
 
+/* Botón secundario */
 .btn-action-secondary {
     background-color: var(--color-acento-vibrante);
     color: var(--color-sombra-oscura);
-    /* El resto de estilos de botón */
 }

@@ -41,18 +41,18 @@
                 <div class="col-md-6 d-flex align-items-end p-5">
                     <div class="align-self-end">
                         <h1 class="display-1 fw-bolder text-light shadow-text">
-                            El Futuro de <br> tus Ventas
+                            Glow Lab <br> 2030:
                         </h1>
                         <p class="text-light-50 fs-5 mt-3 shadow-text">
-                            Sistema de gestión y TPV optimizado para tu negocio.
+                            Centro de Comando Glow.
                         </p>
                     </div>
                 </div>
                 
                 <div class="col-md-6 d-flex justify-content-center">
                     <div class="carousel-placeholder p-4 rounded-3 shadow-lg">
-                        <h4 class="text-light">Carrusel de Características</h4>
-                        <p class="text-light-50">Implementaremos animaciones y degradados aquí para darle profundidad.</p>
+                        <h4 class="text-light">Panel Holistico 2030:</h4>
+                        <p class="text-light-50">Controla cada ángulo de tu negocio con una interfaz intuitiva, diseñada para la máxima claridad visual.</p>
                         <a href="/tienda/login" class="btn btn-action-secondary mt-3">
                             Ir a Iniciar Sesión
                         </a>

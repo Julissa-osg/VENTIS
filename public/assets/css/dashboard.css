@@ -1,12 +1,14 @@
 /* =====================================
-   DASHBOARD CSS - Estilos Internos de la Aplicación
+   DASHBOARD CSS - Estilos Pasteles Elegantes
+   Estilo: Maquillaje / Cosmética / Formal
 ======================================== */
 :root {
-    --color-fondo-base: #F8F9FA; /* Fondo general del contenido (gris muy claro) */
-    --color-sidebar: #333333; /* Gris oscuro para la barra lateral */
-    --color-header: #212529; /* Negro ligeramente más oscuro para la cabecera */
-    --color-acento-vibrante: #E1B12C; /* Dorado/Ocre para elementos activos */
-    --color-blanco: #F0F0F0; 
+    --color-fondo-base: #F6F4F3;        /* Beige muy claro / fondo maquillaje */
+    --color-sidebar: #D8B4A0;           /* Nude rosado elegante */
+    --color-header: #B5838D;            /* Rosa malva sofisticado */
+    --color-acento-vibrante: #E5989B;   /* Rosa pastel (botones y activo) */
+    --color-blanco: #FFFFFF;            /* Blanco limpio */
+    --color-texto-oscuro: #4A4A4A;      /* Gris elegante para texto */
 }
 
 html, body {
@@ -18,16 +20,16 @@ html, body {
 
 /* 1. ESTRUCTURA PRINCIPAL */
 #wrapper {
-    display: flex; /* Habilita el layout de Sidebar + Contenido */
+    display: flex;
     height: 100vh;
 }
 
-/* 2. SIDEBAR (Barra Lateral de Navegación) */
+/* 2. SIDEBAR */
 #sidebar-wrapper {
     min-height: 100vh;
-    width: 250px; 
+    width: 250px;
     background-color: var(--color-sidebar);
-    color: var(--color-blanco);
+    color: var(--color-texto-oscuro);
     transition: margin 0.25s ease-out;
 }
 
@@ -35,10 +37,11 @@ html, body {
     padding: 1rem 1.25rem;
     font-size: 1.5rem;
     font-weight: bold;
-    border-bottom: 1px solid #495057; /* Separador sutil */
-    color: var(--color-acento-vibrante);
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+    color: var(--color-blanco);
 }
 
+/* Links del menú */
 .list-group-item-action {
     color: var(--color-blanco);
     padding: 0.8rem 1.25rem;
@@ -47,18 +50,17 @@ html, body {
     transition: background-color 0.2s, color 0.2s;
 }
 
-/* Estado de HOVER */
+/* Hover */
 .list-group-item-action:hover {
-    background-color: #495057;
+    background-color: rgba(255,255,255,0.25);
     color: var(--color-blanco);
 }
 
-/* Estado ACTIVO (El link donde el usuario está) */
+/* Activo */
 .list-group-item-action.active {
     background-color: var(--color-acento-vibrante);
-    color: var(--color-header) !important; /* Texto oscuro sobre dorado */
+    color: var(--color-blanco) !important;
     font-weight: bold;
-    border-radius: 0;
 }
 
 /* 3. CONTENIDO PRINCIPAL */
@@ -67,28 +69,29 @@ html, body {
     overflow-x: hidden;
 }
 
-/* 4. HEADER (Barra Superior) */
+/* 4. HEADER */
 .top-header {
     background-color: var(--color-header);
     color: var(--color-blanco);
-    border-bottom: 3px solid var(--color-acento-vibrante); /* Línea de acento */
+    border-bottom: 3px solid var(--color-acento-vibrante);
 }
 
-/* 5. Estilos Generales para el Contenido */
+/* 5. CONTENIDO */
 .container-fluid {
     padding: 30px;
 }
 
-/* Botones de acción (manteniendo la coherencia del dorado) */
+/* Botones principales */
 .btn-main-action {
     background-color: var(--color-acento-vibrante);
-    color: var(--color-sombra-oscura, #131313); /* Usamos el color oscuro para el texto */
+    color: var(--color-blanco);
     border: none;
     font-weight: bold;
-    transition: all 0.2s;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
 }
 
 .btn-main-action:hover {
-    filter: brightness(1.1);
+    filter: brightness(1.05);
     transform: translateY(-1px);
 }

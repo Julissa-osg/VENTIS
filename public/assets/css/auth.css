@@ -1,128 +1,130 @@
 /* =====================================
    Estilos de Autenticación (Login/Registro)
-   Basados en el diseño de dos paneles flotantes.
+   Diseño de dos paneles flotantes
+   Estilo: Beauty / Maquillaje / Formal
 ======================================== */
 
-/* Usamos las mismas variables de color de style.css */
+/* Paleta pastel elegante */
 :root {
-    --color-fondo-base: #1A1A1A; 
-    --color-principal-neutro: #333333; 
-    --color-acento-vibrante: #E1B12C; 
-    --color-sombra-oscura: #131313;
-    --color-blanco: #F0F0F0;
-    --color-fondo-panel: #FFFFFF; /* Panel de formulario será blanco */
+    --color-fondo-base: #F6F1F4;           /* Fondo general */
+    --color-principal-neutro: #B8A1AE;     /* Panel izquierdo */
+    --color-acento-vibrante: #E7B6C7;      /* Rosa maquillaje */
+    --color-sombra-oscura: #3A2E36;        /* Texto oscuro */
+    --color-blanco: #FFFFFF;
+    --color-fondo-panel: #FFFFFF;
 }
 
 html, body {
     height: 100%;
+    margin: 0;
     background-color: var(--color-fondo-base);
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
 }
 
-/* Contenedor principal que envuelve toda la tarjeta de Login/Registro */
+/* Contenedor principal */
 .auth-container {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    /* Fondo con la imagen (si quieres usarla, descomenta) */
-    /* background-image: url('../img/fondo.jpg'); 
-    background-size: cover;
-    background-position: center; */
 }
 
-/* La tarjeta flotante principal de dos columnas (El 'Card' grande) */
+/* Tarjeta principal */
 .auth-card {
     display: flex;
-    width: 1100px; /* Ancho fijo para el efecto de dos paneles */
-    height: 800px; /* Altura controlada */
-    border-radius: 25px; /* Esquinas redondeadas grandes */
-    overflow: hidden; /* Importante para la transición */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    width: 1100px;
+    height: 800px;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(58, 46, 54, 0.25);
     transition: transform 0.5s ease;
 }
 
-/* 1. Panel Izquierdo (Mensaje de Bienvenida/Marketing) */
+/* Panel izquierdo */
 .auth-panel-message {
     width: 45%;
-    background-color: var(--color-principal-neutro);
     padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: var(--color-blanco);
     text-align: center;
-    
-    /* Degradado sutil para darle profundidad al panel oscuro */
-    background: linear-gradient(145deg, var(--color-principal-neutro) 0%, var(--color-sombra-oscura) 100%);
+    color: var(--color-blanco);
+    background: linear-gradient(145deg, #C4A7B5 0%, #A88FA0 100%);
 }
 
 .auth-panel-message h2 {
-    font-weight: 800;
     font-size: 2.5rem;
-    color: var(--color-blanco);
+    font-weight: 800;
+    margin-bottom: 20px;
 }
 
-/* 2. Panel Derecho (El Formulario - Blanco) */
+.auth-panel-message p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+}
+
+/* Panel derecho (formulario) */
 .auth-panel-form {
     width: 55%;
-    background-color: var(--color-fondo-panel);
     padding: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: var(--color-fondo-panel);
 }
 
 .auth-panel-form h2 {
+    font-size: 2rem;
     font-weight: 700;
     margin-bottom: 30px;
     color: var(--color-sombra-oscura);
 }
 
-/* Estilos de Formulario (Input y Botones) */
-
-/* Campos de entrada (Input) */
+/* Inputs */
 .form-control {
     border: none;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid #D8C6CF;
     border-radius: 0;
-    padding-left: 0;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    font-size: 1rem;
     transition: border-color 0.3s;
 }
 
 .form-control:focus {
+    outline: none;
     box-shadow: none;
     border-color: var(--color-acento-vibrante);
 }
 
-/* Botón de acción principal (Iniciar Sesión / Registrar) */
+/* Botón principal */
 .btn-auth-submit {
     background-color: var(--color-acento-vibrante);
     color: var(--color-sombra-oscura);
     font-weight: bold;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
+    padding: 12px;
     transition: all 0.3s ease;
-    padding: 10px 20px;
 }
 
 .btn-auth-submit:hover {
-    background-color: var(--color-acento-vibrante);
-    box-shadow: 0 2px 8px rgba(225, 177, 44, 0.5); /* Sombra suave con color de acento */
-    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(231, 182, 199, 0.6);
+    transform: translateY(-2px);
 }
 
-/* Botón Secundario (Ejemplo: Ir a Registrarse) en el panel oscuro */
+/* Botón secundario */
 .btn-auth-secondary {
     background: transparent;
-    color: var(--color-blanco);
     border: 2px solid var(--color-blanco);
-    border-radius: 20px;
-    transition: all 0.3s;
+    color: var(--color-blanco);
+    border-radius: 25px;
+    padding: 10px 25px;
+    margin-top: 20px;
+    transition: all 0.3s ease;
 }
 
 .btn-auth-secondary:hover {
-    background: var(--color-blanco);
+    background-color: var(--color-blanco);
     color: var(--color-principal-neutro);
 }

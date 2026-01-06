@@ -99,7 +99,7 @@ class Usuario extends BaseController
         }
 
         // 3. Todo OK: Actualizamos
-        // IMPORTANTE: Si tu modelo NO tiene 'beforeUpdate' para hashear, descomenta la siguiente línea:
+        // IMPORTANTE: Si tu modelo NO tiene 'beforeUpdate' para hashear, desta la siguiente línea:
         // $passNueva = password_hash($passNueva, PASSWORD_DEFAULT);
         
         $this->usuarioModel->update($idUsuario, ['password' => $passNueva]);
