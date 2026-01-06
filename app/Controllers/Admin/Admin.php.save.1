@@ -1,0 +1,150 @@
+<?php
+
+namespace App\Controllers;
+
+use App\Controllers\BaseController;
+use CodeIgniter\HTTP\ResponseInterface;
+
+class Admin extends BaseController
+{
+    // Constructor para cargar los modelos que vamos a usar
+    protected $codigoVipModel;
+
+
+    protected $tiendaModel;
+
+
+    public function __construct()
+    {
+        // Cargamos el Modelo de Códigos VIP
+        $this->codigoVipModel = new \App\Models\CodigoVipModel();
+
+
+	$this->tiendaModel = new \App\Models\TiendaModel();
+
+
+
+        // NOTA: Aquí se agregaría la verificación de sesión y rol (Super Admin) en un proyecto real.
+    }
+
+    // Método principal del Dashboard del Admin
+    public function index()
+    {
+        // En un proyecto real, cargarías la vista principal del Dashboard aquí.
+        // Por ahora, solo devolvemos un mensaje de prueba.
+        return view('welcome_message'); 
+    }
+
+
+
+
+
+    // Muestra el formulario para generar códigos VIP
+    public function generarCodigos()
+    {
+        // Implementar la carga de la vista del formulario
+        $data['validation'] = \Config\Services::validation();
+
+        // En un proyecto real, cargarías la vista del formulario de Códigos VIP.
+        // Por ahora, solo usaremos una vista temporal o la que tú designes.
+        return view('admin/codigos_vip/generar', $data); 
+    }
+
+
+
+    // Procesa el formulario y genera los códigos
+    public function crearCodigos()
+    {
+        // 1. Validar la entrada
+        if (! $this->request->is('post') || ! $this->validate([
+            'cantidad'      => 'required|integer|greater_than[0]|less_than_equal_to[100]',
+            'precio'        => 'required|numeric|greater_than_equal_to[0]',
+            'duracion_dias' => 'required|integer|greater_than[0]',
+        ])) {
+            return redirect()->back()->withInput();
+        }
+
+        $cantidad = $this->request->getPost('cantidad');
+        $precio = $this->request->getPost('precio');
+        $duracionDias = $this->request->getPost('duracion_dias');
+        $codigosGenerados = [];
+
+        // 2. Generar y guardar los códigos
+        for ($i = 0; $i < $cantidad; $i++) {
+            $codigo = $this->generarCodigoUnico(); // Función para crear un código único
+
+            $data = [
+                'codigo'        => $codigo,
+                'precio'        => $precio,
+                'duracion_dias' => $duracionDias,
+                'estado'        => 'Activo',
+            ];
+
+            // Intentar guardar. El Modelo ya valida que el 'codigo' sea único.
+            if ($this->codigoVipModel->insert($data)) {
+                $codigosGenerados[] = $codigo;
+            } else {
+                // Si falla (ej: la validación de unicidad, aunque es raro si se usa generarCodigoUnico)
+                log_message('error', 'Fallo al guardar código VIP: ' . json_encode($data));
+            }
+        }
+
+        return redirect()->to(site_url('admin/codigos'))->with('message', 'Se generaron ' . count($codigosGenerados) . ' códigos VIP exitosamente.');
+    }
+
+
+
+
+
+    public function listarCodigos()
+    {
+        // 1. Obtener los códigos de la base de datos
+        $data['codigos'] = $this->codigoVipModel->findAll();
+
+        // 2. Cargar la vista
+        return view('admin/codigos_vip/listar', $data); 
+    }
+
+
+
+    // Listar todas las tiendas (Dashboard de tiendas del Super Admin)
+    public function listarTiendas()
+    {
+        $data['tiendas'] = $this->tiendaModel->findAll();
+
+        // En un proyecto real, cargarías la vista de Listado de Tiendas.
+        return view('admin/tiendas/listar', $data); 
+    }
+
+
+
+    // Muestra el formulario para crear una nueva tienda
+    public function crearTienda()
+    {
+        // NOTA: Cuando se cree una tienda, también se debe crear el usuario "Admin Tienda" asociado.
+        $data['validation'] = \Config\Services::validation();
+
+        // En un proyecto real, cargarías la vista del formulario de creación.
+        return view('admin/tiendas/crear', $data); 
+    }
+
+
+
+
+
+
+    // Función auxiliar para generar un código alfanumérico único
+    private function generarCodigoUnico(int $length = 10): string
+    {
+        $bytes = random_bytes(ceil($length / 2));
+        $codigo = substr(bin2hex($bytes), 0, $length);
+        
+        // Verifica que no exista en la base de datos (evita colisiones)
+        while ($this->codigoVipModel->where('codigo', $codigo)->first()) {
+            $bytes = random_bytes(ceil($length / 2));
+            $codigo = substr(bin2hex($bytes), 0, $length);
+        }
+
+        return strtoupper($codigo); // Retorna en mayúsculas (ej: 4F9A6C1B2E)
+    }
+}

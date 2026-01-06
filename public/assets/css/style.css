@@ -1,0 +1,156 @@
+/* =====================================
+   Paleta de Colores
+======================================== */
+:root {
+    --color-fondo-base: #1A1A1A; 
+    --color-principal-neutro: #333333; 
+    --color-acento-vibrante: #E1B12C;
+    --color-sombra-oscura: #131313;
+    --color-blanco: #F0F0F0;
+}
+
+/* =====================================
+   1. Estructura y Fondo (IMAGEN)
+======================================== */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#landing-container {
+    height: 100vh; 
+    background: var(--color-fondo-ultra-oscuro);
+    
+    background-image: url('../img/fondo-principal-1.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Efecto de oscurecimiento sobre la imagen para que el texto blanco resalte */
+    position: relative;
+}
+
+#landing-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Capa oscura (opacidad 70%) */
+    z-index: 1; /* Detrás del contenido, pero encima de la imagen */
+}
+
+/* El contenido debe estar por encima de la capa oscura */
+#landing-container > * {
+    z-index: 2;
+    position: relative;
+}
+
+/* =====================================
+   2. Menú Tipo NOTCH (flotante)
+======================================== */
+
+.notch-menu {
+    /* 1. Estilo y Fondo */
+    background: var(--color-principal-neutro); 
+    max-width: 900px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    
+    /* Degradado NEUTRO */
+    background: linear-gradient(135deg, var(--color-principal-neutro) 0%, var(--color-sombra-oscura) 100%);
+}
+
+.menu-link {
+    color: var(--color-blanco) !important;
+    opacity: 0.8;
+    transition: opacity 0.3s, transform 0.3s;
+    font-weight: 500;
+}
+
+.menu-link:hover {
+    opacity: 1;
+    transform: translateY(-2px); /* Efecto 3D sutil */
+    text-shadow: 0 0 5px var(--color-principal-ligero);
+}
+
+/* =====================================
+   3. Título y Sombras
+======================================== */
+
+/* Mejora la legibilidad del texto blanco sobre la imagen oscura */
+.shadow-text {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); 
+}
+
+/* Título de la página */
+.display-1 {
+    font-size: 5rem;
+}
+
+/* =====================================
+   4. Botones con Profundidad
+======================================== */
+
+.btn-action-primary, .btn-action-secondary {
+    font-weight: bold;
+    border: none;
+    transition: all 0.3s ease;
+    padding: 10px 25px;
+    border-radius: 8px;
+}
+
+/* Botón Principal (Comenzar/Registro) */
+.btn-action-primary {
+    background-color: var(--color-acento-vibrante); /* Dorado */
+    color: var(--color-sombra-oscura); /* Texto oscuro sobre dorado */
+    box-shadow: 0 4px var(--color-sombra-oscura);
+}
+
+.btn-action-primary:hover {
+    background-color: var(--color-acento-vibrante);
+    transform: translateY(-2px);
+    box-shadow: 0 6px var(--color-sombra-oscura);
+    filter: brightness(1.1);
+}
+
+/* Botón de Acceso Rápido (Círculo) */
+.btn-action-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--color-acento-vibrante);
+    color: var(--color-sombra-oscura);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s;
+}
+
+.btn-action-circle:hover {
+    background-color: var(--color-secundario);
+    transform: scale(1.05);
+}
+
+/* =====================================
+   5. Carrusel/Placeholder (Profundidad)
+======================================== */
+
+.carousel-placeholder {
+    background: rgba(51, 51, 51, 0.301); 
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: 400px;
+    width: 80%;
+    /* Borde superior con acento dorado */
+    border-top: 5px solid var(--color-acento-vibrante);
+}
+
+.btn-action-secondary {
+    background-color: var(--color-acento-vibrante);
+    color: var(--color-sombra-oscura);
+    /* El resto de estilos de botón */
+}
