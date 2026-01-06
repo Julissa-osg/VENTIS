@@ -1,0 +1,94 @@
+/* =====================================
+   DASHBOARD CSS - Estilos Internos de la Aplicación
+======================================== */
+:root {
+    --color-fondo-base: #F8F9FA; /* Fondo general del contenido (gris muy claro) */
+    --color-sidebar: #333333; /* Gris oscuro para la barra lateral */
+    --color-header: #212529; /* Negro ligeramente más oscuro para la cabecera */
+    --color-acento-vibrante: #E1B12C; /* Dorado/Ocre para elementos activos */
+    --color-blanco: #F0F0F0; 
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-fondo-base);
+}
+
+/* 1. ESTRUCTURA PRINCIPAL */
+#wrapper {
+    display: flex; /* Habilita el layout de Sidebar + Contenido */
+    height: 100vh;
+}
+
+/* 2. SIDEBAR (Barra Lateral de Navegación) */
+#sidebar-wrapper {
+    min-height: 100vh;
+    width: 250px; 
+    background-color: var(--color-sidebar);
+    color: var(--color-blanco);
+    transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 1rem 1.25rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-bottom: 1px solid #495057; /* Separador sutil */
+    color: var(--color-acento-vibrante);
+}
+
+.list-group-item-action {
+    color: var(--color-blanco);
+    padding: 0.8rem 1.25rem;
+    background-color: transparent;
+    border: none;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+/* Estado de HOVER */
+.list-group-item-action:hover {
+    background-color: #495057;
+    color: var(--color-blanco);
+}
+
+/* Estado ACTIVO (El link donde el usuario está) */
+.list-group-item-action.active {
+    background-color: var(--color-acento-vibrante);
+    color: var(--color-header) !important; /* Texto oscuro sobre dorado */
+    font-weight: bold;
+    border-radius: 0;
+}
+
+/* 3. CONTENIDO PRINCIPAL */
+#page-content-wrapper {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* 4. HEADER (Barra Superior) */
+.top-header {
+    background-color: var(--color-header);
+    color: var(--color-blanco);
+    border-bottom: 3px solid var(--color-acento-vibrante); /* Línea de acento */
+}
+
+/* 5. Estilos Generales para el Contenido */
+.container-fluid {
+    padding: 30px;
+}
+
+/* Botones de acción (manteniendo la coherencia del dorado) */
+.btn-main-action {
+    background-color: var(--color-acento-vibrante);
+    color: var(--color-sombra-oscura, #131313); /* Usamos el color oscuro para el texto */
+    border: none;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.btn-main-action:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
